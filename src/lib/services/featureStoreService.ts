@@ -1,19 +1,18 @@
 import prisma from '../prisma';
 
-export function getRFMScore(userId: string) {
-  // Mock: return random RFM score
-  return Math.floor(Math.random() * 100);
+export async function getRFMScore(userId: string) {
+  const feature = await prisma.feature.findFirst({ where: { userId } });
+  return feature?.rfm ?? null;
 }
 
-export function getCoPurchaseClusters(productId: string) {
-  // Mock: return random cluster id
-  return `cluster-${Math.floor(Math.random() * 5)}`;
+export async function getCoPurchaseClusters(productId: string) {
+  const feature = await prisma.feature.findFirst({ where: { productId } });
+  return feature?.cluster ?? null;
 }
 
-export function getSeasonalityPatterns(productId: string) {
-  // Mock: return random season
-  const seasons = ['Spring', 'Summer', 'Fall', 'Winter'];
-  return seasons[Math.floor(Math.random() * seasons.length)];
+export async function getSeasonalityPatterns(productId: string) {
+  const feature = await prisma.feature.findFirst({ where: { productId } });
+  return feature?.seasonality ?? null;
 }
 
 export async function getUserFeature(userId: string) {
@@ -28,7 +27,7 @@ export async function recalculateUserFeatures(userId: string) {
   // Example: recalculate RFM as count of orders + avg feedback rating
   const orders = await prisma.order.findMany({ where: { userId } });
   const feedbacks = await prisma.feedback.findMany({ where: { userId } });
-  const rfm = orders.length + (feedbacks.reduce((sum, f) => sum + f.rating, 0) / (feedbacks.length || 1));
+  const rfm = orders.length + (feedbacks.reduce((sum: number, f: any) => sum + f.rating, 0) / (feedbacks.length || 1));
   await prisma.feature.upsert({
     where: { userId },
     update: { rfm },

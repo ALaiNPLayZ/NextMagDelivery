@@ -1,12 +1,11 @@
 import prisma from '../prisma';
 
-const mockVans = [
-  { id: '1', location: { lat: 40.7128, lng: -74.006 }, eta: 10 },
-  { id: '2', location: { lat: 40.7138, lng: -74.002 }, eta: 15 },
-];
-
 export async function getVanInfo(id: string) {
   return prisma.van.findUnique({ where: { id } });
+}
+
+export async function getAllVans() {
+  return prisma.van.findMany();
 }
 
 export async function assignVan(userId: string, orderId: string, vanId: string) {

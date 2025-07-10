@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getVanInfo } from '@/lib/services/vanService';
+import { getAllVans } from '@/lib/services/vanService';
 
 export async function GET() {
-  // For demo, return all vans (vanOps info)
-  // You may want to implement a real getAllVans in vanService
-  const vans = [await getVanInfo('1'), await getVanInfo('2')];
-  return NextResponse.json({ vans });
+  try {
+    const vans = await getAllVans();
+    return NextResponse.json({ vans });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ error: 'Failed to get vanOps info' }, { status: 500 });
+  }
 }
 
 export function POST() {
