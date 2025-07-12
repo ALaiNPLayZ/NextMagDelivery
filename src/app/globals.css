@@ -1,83 +1,82 @@
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff;
+  --foreground: #222;
+  --gray-100: #f7f7f7;
+  --gray-200: #ededed;
+  --gray-300: #d1d5db;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-700: #222;
+  --border: #e5e7eb;
+  --card-bg: #fafafa;
+  --shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
+html, body {
+  height: 100%;
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body {
-  margin: 0;
+  color: var(--foreground);
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f8f9fa;
-  color: #222;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3 {
-  color: #2d3748;
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-a {
-  color: #2563eb;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-input, button, select, textarea {
-  font-family: inherit;
-  font-size: 1rem;
-  margin: 0.25rem 0.5rem 0.25rem 0;
-  padding: 0.25rem 0.5rem;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 1rem;
-}
-
-th, td {
-  border: 1px solid #e2e8f0;
-  padding: 0.5rem;
-  text-align: left;
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background: var(--background);
 }
 
 nav {
-  background: #fff;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  justify-content: center;
+}
+
+nav a {
+  color: var(--gray-700);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background: var(--gray-200);
+  color: var(--gray-500);
+}
+
+nav a.active {
+  background: var(--gray-300);
+  color: var(--gray-700);
+  font-weight: 700;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

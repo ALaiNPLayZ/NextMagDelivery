@@ -12,9 +12,39 @@ export default function FeatureScore({ userId }: { userId: string }) {
   }, [userId]);
 
   return (
-    <div>
-      <h3>RFM Score</h3>
-      <p>{rfm !== null ? rfm : "N/A"}</p>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "0.3rem",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "1.1rem",
+          color: "var(--gray-500)",
+          fontWeight: 600,
+          letterSpacing: "0.5px",
+        }}
+      >
+        RFM Score
+      </span>
+      <span
+        style={{
+          fontSize: "2.2rem",
+          fontWeight: 900,
+          color: "var(--gray-700)",
+          background: "var(--gray-200)",
+          borderRadius: "0.5rem",
+          padding: "0.2rem 1.2rem",
+          minWidth: 60,
+          textAlign: "center",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.03)",
+        }}
+      >
+        {rfm !== null ? rfm : "N/A"}
+      </span>
     </div>
   );
 }

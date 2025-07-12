@@ -13,9 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        style={{ margin: 0, fontFamily: "sans-serif", background: "#f8f9fa" }}
-      >
+      <body>
         <Navbar />
         <div style={{ maxWidth: 900, margin: "0 auto" }}>{children}</div>
       </body>
